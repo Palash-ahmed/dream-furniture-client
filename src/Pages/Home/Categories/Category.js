@@ -1,18 +1,16 @@
 import React from 'react';
-import bedroom from '../../../assets/Categories/bedroom.jpg';
-import livingRoom from '../../../assets/Categories/Living-room.png';
-import diningRoom from '../../../assets/Categories/dining-room.jpg';
-import readingRoom from '../../../assets/Categories/reading-room.jpg';
-import kidsFurniture from '../../../assets/Categories/kids-furniture.jpg';
-import officeFurniture from '../../../assets/Categories/office-furniture.jpg';
+import { Link } from 'react-router-dom';
 
-const Category = () => {
+const Category = ({allCategories}) => {
+    const {image, name} = allCategories;
     return (
-        <div className='mt-12'>
-            <div>
-                <h2 className="text-4xl font-bold text-primary text-center">Categories</h2>
+        <div className="card bg-base-100 shadow-xl">
+            <figure className="px-10 pt-10">
+                <Link to='/products'><img src={image} alt="" className="h-1/2 rounded-xl" /></Link>
+            </figure>
+            <div className="card-body items-center text-center">
+                <Link to={`/category/${allCategories.id}`}><h1 className="card-title text-3xl">{name}</h1></Link>
             </div>
-            
         </div>
     );
 };
