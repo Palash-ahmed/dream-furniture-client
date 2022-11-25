@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Category from './Category';
+import AllCategories from './AllCategories';
 
 const Categories = () => {
 
     const [categories, setCategories] = useState([]);
-    
+
     useEffect(() => {
         fetch('http://localhost:5000/products-categories')
-        .then(res => res.json())
-        .then(data => setCategories(data));
-    },[])
+            .then(res => res.json())
+            .then(data => setCategories(data));
+    }, [])
 
     return (
         <div className='my-12'>
@@ -17,14 +17,14 @@ const Categories = () => {
                 <h2 className="text-4xl mb-12 font-bold text-primary text-center">Categories</h2>
                 <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
                     {
-                        categories.map(allCategories => <Category 
+                        categories.map(allCategories => <AllCategories
                             key={allCategories.id}
                             allCategories={allCategories}
-                        ></Category>)
+                        ></AllCategories>)
                     }
                 </div>
             </div>
-            
+
         </div>
     );
 };

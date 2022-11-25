@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import FooterIcon from '../../../assets/dining-room-icon.jpg'
 
 const Footer = () => {
     return (
-        <div>
-            <h1 className="text-4xl">This is Footer</h1>
-        </div>
+        
     );
 };
 
