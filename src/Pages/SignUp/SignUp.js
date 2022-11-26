@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -9,10 +9,10 @@ const SignUp = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const {createUser, updateUser} = useContext(AuthContext);
-    const [signUpError, setSignUpError] = useState('')
+    const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp =(data)=>{
-        console.log(data);
         setSignUpError('');
         createUser(data.email, data.password)
         .then(result =>{
@@ -23,13 +23,30 @@ const SignUp = () => {
                 displayName: data.name
             }
             updateUser(userInfo)
-            .then(()=>{})
+            .then(()=>{
+                saveUser(data.name, data.email);
+            })
             .catch(err =>console.error(err))
         })
         .catch(error => {
             console.error(error)
             setSignUpError(error.message)
         });
+    }
+    const saveUser = (name, email)=>{
+        const user = {name, email};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            navigate('/');
+        })
     }
 
     return (
