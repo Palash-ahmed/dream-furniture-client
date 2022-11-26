@@ -1,21 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUser} = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('')
+
     const handleSignUp =(data)=>{
         console.log(data);
+        setSignUpError('');
         createUser(data.email, data.password)
         .then(result =>{
             const user = result.user;
             console.log(user);
+            toast.success('User Created Successfully')
+            const userInfo = {
+                displayName: data.name
+            }
+            updateUser(userInfo)
+            .then(()=>{})
+            .catch(err =>console.error(err))
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+            console.error(error)
+            setSignUpError(error.message)
+        });
     }
 
     return (
@@ -48,6 +62,7 @@ const SignUp = () => {
                     </div>
 
                     <input className='btn btn-primary w-full mt-6' value='Sign Up' type="submit" />
+                    {setSignUpError && <p className='text-error'>{signUpError}</p>}
                 </form>
                 <p className='my-4 text-center'>Already have an account? <Link className='text-secondary Link link-hover font-bold' to='/login'>Login</Link></p>
                 <div className="divider">OR</div>
