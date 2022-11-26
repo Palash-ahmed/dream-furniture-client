@@ -18,8 +18,8 @@ const BookingModal = ({ selectedProduct, setSelectedProduct }) => {
 
         const booking = {
             buyerName: name,
-            buyerEmail:email,
             productName:title,
+            email,
             price,
             phone,
             location,
@@ -49,10 +49,10 @@ const BookingModal = ({ selectedProduct, setSelectedProduct }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{title}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4 mt-8'>
-                        <input name='name' type="text" disabled value={user?.displayName} className="input input-bordered w-full" />
-                        <input name='email' type="text" disabled value={user?.email} className="input input-bordered w-full" />
-                        <input name='title' type="text" disabled value={title} className="input input-bordered w-full" />
-                        <input name='price' type="text" disabled value={resale_price} className="input input-bordered w-full" />
+                        <input name='name' type="text" disabled value={user?.displayName} className="input input-bordered w-full uppercase font-bold" />
+                        <input name='email' type="text" disabled value={user?.email} className="input input-bordered w-full font-bold" />
+                        <input name='title' type="text" disabled value={title} className="input input-bordered w-full font-bold" />
+                        <input name='price' type="text" disabled value={resale_price} className="input input-bordered w-full font-bold" />
                         <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full" />
                         <input name='location' type="text" placeholder="Location" className="input input-bordered w-full" />
                         <br />
