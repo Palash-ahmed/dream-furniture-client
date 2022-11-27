@@ -4,13 +4,20 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import useToken from '../../components/Hooks/UseToken/useToken';
 
 const SignUp = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const {createUser, updateUser} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
     const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignUp =(data)=>{
         setSignUpError('');
@@ -44,21 +51,11 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            userToken(email);
+            setUserEmail(email);
         })
     }
 
-    const userToken = email =>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/');
-            }
-        })
-    }
+    
 
     return (
         <div className='h-[700px] flex justify-center items-center'>
