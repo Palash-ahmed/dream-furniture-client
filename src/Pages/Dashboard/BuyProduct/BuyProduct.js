@@ -20,7 +20,7 @@ const BuyProduct = () => {
     })
     return (
         <div>
-            <h3 className="text-3xl my-12">My Orders</h3>
+            <h3 className="text-3xl mb-6">My Orders</h3>
             <div className=" w-full">
                 <table className="table w-full">
                     <thead>
@@ -34,7 +34,8 @@ const BuyProduct = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((order, i) =>
+                            bookings &&
+                            bookings?.map((order, i) =>
                             <tr key={order._id}>
                                 <th>{i+1}</th>
                                 <td>

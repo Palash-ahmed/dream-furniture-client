@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
-import { MdDelete } from "react-icons/md";
+import { VscTrash } from "react-icons/vsc";
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
@@ -30,7 +30,7 @@ const AllUsers = () => {
     }
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl mb-6">All Users</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
 
@@ -51,7 +51,7 @@ const AllUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user?.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className="btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary text-white">Make Admin</button>}</td>
-                                    <td><button><MdDelete className='text-3xl'></MdDelete></button></td>
+                                    <td><button><VscTrash className='text-3xl'></VscTrash></button></td>
                                 </tr>)
                         }
                     </tbody>
