@@ -2,14 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
-
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageUploadKey = process.env.REACT_APP_imagebb_key;
+    const navigate = useNavigate();
+
     const { data: newProducts, isLoading } = useQuery({
         queryKey: ['newProduct'],
         queryFn: async () => {
@@ -22,7 +24,7 @@ const AddProduct = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageUploadKey}`
+        const url = `https://api.imgbb.com/1/upload?key=${imageUploadKey}`
         fetch(url, {
             method: 'POST',
             body: formData
@@ -39,8 +41,13 @@ const AddProduct = () => {
                         original_price: data.originalPrice,
                         condition: data.condition,
                         years_of_use: data.used,
+                        location: data.location,
+                        published_date: data.date,
+                        rating: data.rating,
+                        total_view: data.view,
                         description: data.description,
-                        author: user?.displayName
+                        displayName: user.displayName,
+                        email: user.email
                     }
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
@@ -53,7 +60,8 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
-                            toast.success(`${data.title} is added successfully.`)
+                            toast.success(`${data.title} is added successfully.`);
+                            navigate('/dashboard/myproducts')
                         })
                 }
             })
@@ -125,6 +133,45 @@ const AddProduct = () => {
                             <option>Very Good</option>
                             <option>Good</option>
                         </select>
+                    </div>
+                </div>
+
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text font-bold">Location</span></label>
+                        <input type="text" {...register("location", {
+                            required: "Location is required"
+                        })} placeholder="Your Location" className="input input-bordered w-full " />
+                        {errors.location && <p className='text-error'>{errors.location?.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text font-bold">Published Date</span></label>
+                        <input type="text" {...register("date", {
+                            required: "Published Date is required"
+                        })} placeholder="Publishing Date" className="input input-bordered w-full " />
+                        {errors.date && <p className='text-error'>{errors.date?.message}</p>}
+                    </div>
+                </div>
+
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text font-bold">Rating</span></label>
+                        <select {...register("rating", { required: 'Rating is required' })} className="select select-bordered w-full max-w-xs">
+                            <option selected>Select Rating</option>
+                            <option>5</option>
+                            <option>4.5</option>
+                            <option>4</option>
+                            <option>3.5</option>
+                            <option>3</option>
+                        </select>
+                        {errors.rating && <p className='text-error'>{errors.rating?.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text font-bold">Total view</span></label>
+                        <input type="text" {...register("view")} placeholder="Total view" className="input input-bordered w-full " />
+                        {errors.view && <p className='text-error'>{errors.view?.message}</p>}
                     </div>
                 </div>
 
