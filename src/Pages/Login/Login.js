@@ -21,13 +21,11 @@ const Login = () => {
     }
 
     const handleLogin = data => {
-        console.log(data);
         setLoginError('');
         logIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                setLoginUserEmail(data.email)
+                setLoginUserEmail(user.email)
             })
             .catch(error => {
                 console.error(error.message)

@@ -36,7 +36,7 @@ const Products = ({ product, setSelectedProduct }) => {
                         </div>
                     </div>
                         <div className="card-actions justify-end">
-                            <label onClick={() => setSelectedProduct(product)} htmlFor="booking-modal"className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">Buy Now</label>
+                            <label onClick={() => setSelectedProduct(product)} htmlFor="order-modal"className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">Buy Now</label>
                         </div>
                 </div>
             </div>

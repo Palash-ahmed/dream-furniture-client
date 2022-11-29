@@ -7,9 +7,9 @@ import Loading from '../../Shared/Loading/Loading';
 const BuyProduct = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
-    const { data: bookings = [], isLoading } = useQuery({
-        queryKey: ['bookings', user?.email],
+    const url = `http://localhost:5000/orders?email=${user?.email}`;
+    const { data: orders = [], isLoading } = useQuery({
+        queryKey: ['orders', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
@@ -42,8 +42,8 @@ const BuyProduct = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings &&
-                            bookings?.map((order, i) =>
+                            orders &&
+                            orders?.map((order, i) =>
                                 <tr key={order._id}>
                                     <th>{i + 1}</th>
                                     <td>

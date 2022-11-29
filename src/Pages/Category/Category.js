@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import BookingModal from '../Products/BookingModal/BookingModal';
+import OrdersModal from '../Products/OrdersModal/OrdersModal';
 import Products from '../Products/Products';
 
 const Category = () => {
@@ -19,10 +19,10 @@ const Category = () => {
             </div>
             {
                 selectedProduct &&
-                <BookingModal
+                <OrdersModal
                     selectedProduct={selectedProduct}
                     setSelectedProduct={setSelectedProduct}
-                ></BookingModal>
+                ></OrdersModal>
             }
         </div>
     );

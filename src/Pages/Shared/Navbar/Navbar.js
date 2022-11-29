@@ -44,7 +44,7 @@ const Navbar = () => {
                         <img src={furniture} alt='furniture' />
                     </div>
                 </div>
-                <Link to='/' className="ml-6 text-3xl font-bold text-yellow-300">Furnix<spen className='text-4xl font-bold text-white'>Furniture</spen></Link>
+                <Link to='/' className="ml-6 text-4xl font-bold text-yellow-300">Furnix<spen className='text-4xl font-bold text-white'>Furniture</spen></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

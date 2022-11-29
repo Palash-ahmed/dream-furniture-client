@@ -1,9 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { VscTrash } from "react-icons/vsc";
+import ActionModal from '../../Shared/ActionModal/ActionModal';
 
 const AllUsers = () => {
+
+    const [deleteUser, setDeleteUser] = useState(null)
+
+    const cancelModal = () => {
+        setDeleteUser(null);
+    }
+
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -28,6 +36,23 @@ const AllUsers = () => {
             }
         })
     }
+
+    const handleDeleteUser = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.deletedCount > 0){
+                refetch();
+                toast.success('Deleted Successfully')
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className="text-3xl mb-6">All Users</h2>
@@ -51,12 +76,21 @@ const AllUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user?.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className="btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary text-white">Make Admin</button>}</td>
-                                    <td><button><VscTrash className='text-3xl'></VscTrash></button></td>
+                                    <td>< label onClick={() => setDeleteUser(user)} htmlFor="action-modal" ><VscTrash className='text-3xl hover:cursor-pointer'></VscTrash></label ></td>
                                 </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+            {
+            deleteUser && <ActionModal
+                title={`Are you sure you want to delete this seller?`}
+                message={`If you delete ${deleteUser.displayName}. It cannot be undone.`}
+                successDelete={handleDeleteUser}
+                modalData={deleteUser}
+                cancelModal={cancelModal}
+            ></ActionModal>
+        }
         </div>
     );
 };

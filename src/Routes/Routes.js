@@ -7,6 +7,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import BuyProduct from "../Pages/Dashboard/BuyProduct/BuyProduct";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import Sellers from "../Pages/Dashboard/Sellers/Sellers";
 import Home from "../Pages/Home/Home/Home"
 import Login from "../Pages/Login/Login";
 import Blog from "../Pages/Shared/Blog/Blog";
@@ -14,6 +15,7 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -58,16 +60,20 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
+                path: '/dashboard/sellers',
+                element: <AdminRoute><Sellers></Sellers></AdminRoute>
+            },
+            {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`),
                 element: <Payment></Payment>
             },
         ]
