@@ -31,7 +31,7 @@ const SignUp = () => {
             }
             updateUser(userInfo)
             .then(()=>{
-                saveUser(data.name, data.email);
+                saveUser(data.name, data.email, data.account);
             })
             .catch(err =>console.error(err))
         })
@@ -40,8 +40,8 @@ const SignUp = () => {
             setSignUpError(error.message)
         });
     }
-    const saveUser = (name, email)=>{
-        const user = {name, email};
+    const saveUser = (name, email, role)=>{
+        const user = {name, email, role};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -84,6 +84,16 @@ const SignUp = () => {
                             minLength: {value: 6, message: 'Password must be 6 characters'}
                         })} placeholder="Enter Your Password" className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-error'>{errors.password?.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text font-bold">Select account type</span></label>
+                        <select {...register("account", { required: 'Account type is required' })} className="select select-bordered w-full max-w-xs">
+                            
+                            <option value='buyer'>Buyer</option>
+                            <option value='seller'>Seller</option>
+                           
+                        </select>
                     </div>
 
                     <input className='btn btn-primary w-full mt-6' value='Sign Up' type="submit" />

@@ -59,16 +59,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
+                element: <AddProduct></AddProduct>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <AdminRoute><MyProducts></MyProducts></AdminRoute>
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/payment/:id',
                 loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`),
-                element: <AdminRoute><Payment></Payment></AdminRoute>
+                element: <Payment></Payment>
             },
         ]
     }
