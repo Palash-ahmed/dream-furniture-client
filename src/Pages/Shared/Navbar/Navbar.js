@@ -29,7 +29,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-gradient-to-r from-primary to-secondary text-white py-6 flex justify-between">
+        <div className="navbar bg-gradient-to-r from-primary to-secondary py-6 flex justify-between">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
