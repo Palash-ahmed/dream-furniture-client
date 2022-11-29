@@ -13,24 +13,23 @@ const Navbar = () => {
     }
 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/categories'>Categories</Link></li>
-        <li><Link to='/blog'>Blog</Link></li>
+        <li><Link className='font-bold' to='/'>Home</Link></li>
+        <li><Link className='font-bold' to='/blogs'>Blog</Link></li>
         {user?.uid ?
             <>
-                <li><Link to='/dashboard'>Dashboard</Link></li>
-                <li><button onClick={handleLogOut}>Log Out</button></li>
+                <li><Link className='font-bold' to='/dashboard'>Dashboard</Link></li>
+                <li><button className='font-bold' onClick={handleLogOut}>Log Out</button></li>
             </>
             :
             <>
-                <li><Link to='/login'>Login</Link></li>
-                <li><Link to='/signup'>Sign up</Link></li>
+                <li><Link className='font-bold' to='/login'>Login</Link></li>
+                <li><Link className='font-bold' to='/signup'>Sign up</Link></li>
             </>
         }
     </>
 
     return (
-        <div className="navbar bg-base-100 flex justify-between">
+        <div className="navbar bg-gradient-to-r from-primary to-secondary text-white py-6 flex justify-between">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,7 +44,7 @@ const Navbar = () => {
                         <img src={furniture} alt='furniture' />
                     </div>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl">Furnix</Link>
+                <Link to='/' className="ml-6 text-3xl font-bold text-yellow-300">Furnix<spen className='text-4xl font-bold text-white'>Furniture</spen></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

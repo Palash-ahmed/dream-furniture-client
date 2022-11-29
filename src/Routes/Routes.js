@@ -9,6 +9,7 @@ import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Home from "../Pages/Home/Home/Home"
 import Login from "../Pages/Login/Login";
+import Blog from "../Pages/Shared/Blog/Blog";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/blogs',
+                element: <Blog></Blog>
             },
             {
                 path: '/signup',
