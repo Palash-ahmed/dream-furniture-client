@@ -5,7 +5,7 @@ import { MdLocationPin } from "react-icons/md";
 
 const Products = ({ product, setSelectedProduct }) => {
 
-    const { title, image_url, total_view,published_date, displayName, resale_price, original_price, description, location, condition, years_of_use } = product;
+    const { title, image_url, total_view,published_date, rate, displayName, resale_price, original_price, description, location, condition, years_of_use } = product;
 
     return (
             <div className="card lg:w-[900px] mx-auto bg-base-100 shadow-xl">
@@ -14,7 +14,7 @@ const Products = ({ product, setSelectedProduct }) => {
                 <div className="card-body">
                     <h2 className="card-title text-3xl">{title}</h2>
                     <div className='flex mt-2'>
-                        <p className='flex font-bold'>Rating: <FaStar className='mx-4 text-warning text-2xl'></FaStar> <span className='text-xl font-bold'></span></p>
+                        <p className='flex font-bold'>Rating: {rate} <FaStar className='mx-4 text-warning text-2xl'></FaStar> <span className='text-xl font-bold'></span></p>
                         <p className='font-bold'>Total View: <span className='text-xl font-bold'>{total_view}</span></p>
                     </div>
                     <p className='my-4'>{description}</p>

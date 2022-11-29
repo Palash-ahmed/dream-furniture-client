@@ -84,8 +84,8 @@ const AllUsers = () => {
             </div>
             {
             deleteUser && <ActionModal
-                title={`Are you sure you want to delete this seller?`}
-                message={`If you delete ${deleteUser.displayName}. It cannot be undone.`}
+                title={`Are you sure you want to delete this user?`}
+                message={`If you delete ${deleteUser.name}. It cannot be undone.`}
                 successDelete={handleDeleteUser}
                 modalData={deleteUser}
                 cancelModal={cancelModal}

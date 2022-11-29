@@ -43,7 +43,7 @@ const AddProduct = () => {
                         years_of_use: data.used,
                         location: data.location,
                         published_date: data.date,
-                        rating: data.rating,
+                        rate: data.rating,
                         total_view: data.view,
                         description: data.description,
                         displayName: user.displayName,
