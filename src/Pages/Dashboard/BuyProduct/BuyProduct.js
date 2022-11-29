@@ -7,7 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 const BuyProduct = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/orders?email=${user?.email}`;
+    const url = `https://dream-furniture-server.vercel.app/orders?email=${user?.email}`;
     const { data: orders = [], isLoading } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async () => {

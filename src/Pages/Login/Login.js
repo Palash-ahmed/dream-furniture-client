@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../contexts/AuthProvider';
-import useToken from '../../components/Hooks/UseToken/useToken';
+import useToken from '../../components/Hooks/useToken/useToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()

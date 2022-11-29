@@ -15,7 +15,7 @@ const MyProducts = () => {
 
 
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/products?email=${user?.email}`;
+    const url = `https://dream-furniture-server.vercel.app/products?email=${user?.email}`;
     const { data: newProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['newProducts', user?.email],
         queryFn: async () => {
@@ -36,7 +36,7 @@ const MyProducts = () => {
 
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://dream-furniture-server.vercel.app/products/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

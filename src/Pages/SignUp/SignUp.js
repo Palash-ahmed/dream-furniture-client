@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
-import useToken from '../../components/Hooks/UseToken/useToken';
+import useToken from '../../components/Hooks/useToken/useToken';
 
 const SignUp = () => {
 
@@ -56,7 +56,7 @@ const SignUp = () => {
     
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://dream-furniture-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

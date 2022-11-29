@@ -25,7 +25,7 @@ const OrdersModal = ({ selectedProduct, setSelectedProduct }) => {
             location,
             image_url,
         }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://dream-furniture-server.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

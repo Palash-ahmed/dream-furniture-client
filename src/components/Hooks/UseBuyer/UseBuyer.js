@@ -6,7 +6,7 @@ const useBuyer = email => {
 
     useEffect(()=>{
         if(email){
-            fetch(`http://localhost:5000/users/buyers/${email}`)
+            fetch(`https://dream-furniture-server.vercel.app/users/buyers/${email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

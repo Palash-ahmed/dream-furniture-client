@@ -4,7 +4,6 @@ import Main from "../Layout/Main"
 import Category from "../Pages/Category/Category";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import Buyer from "../Pages/Dashboard/Buyer/Buyer";
 import BuyProduct from "../Pages/Dashboard/BuyProduct/BuyProduct";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Dashboard/Payment/Payment";
@@ -15,7 +14,6 @@ import Blog from "../Pages/Shared/Blog/Blog";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
-import BuyerRoute from "./BuyerRoute/BuyerRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import SellerRoute from "./SellerRoute/SellerRoute";
 
@@ -44,7 +42,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><Category></Category></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({params}) => fetch(`https://dream-furniture-server.vercel.app/categories/${params.id}`)
             },
         ]
     },
@@ -73,13 +71,10 @@ export const router = createBrowserRouter([
                 path: '/dashboard/myproducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
-            {
-                path: '/dashboard/buyer',
-                element: <BuyerRoute><Buyer></Buyer></BuyerRoute>
-            },
+            
             {
                 path: '/dashboard/payment/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`),
+                loader: ({params}) => fetch(`https://dream-furniture-server.vercel.app/orders/${params.id}`),
                 element: <Payment></Payment>
             },
         ]

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import useBuyer from '../../components/Hooks/UseBuyer/UseBuyer';
+import useBuyer from '../../components/Hooks/useBuyer/useBuyer';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../../Pages/Shared/Loading/Loading';
 

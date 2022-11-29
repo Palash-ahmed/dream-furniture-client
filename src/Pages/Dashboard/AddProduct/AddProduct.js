@@ -15,7 +15,7 @@ const AddProduct = () => {
     const { data: newProducts, isLoading } = useQuery({
         queryKey: ['newProduct'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categoriesNewProduct');
+            const res = await fetch('https://dream-furniture-server.vercel.app/categoriesNewProduct');
             const data = await res.json();
             return data;
         }
@@ -49,7 +49,7 @@ const AddProduct = () => {
                         displayName: user.displayName,
                         email: user.email
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://dream-furniture-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
