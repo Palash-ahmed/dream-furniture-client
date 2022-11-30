@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { VscTrash } from "react-icons/vsc";
 import ActionModal from '../../Shared/ActionModal/ActionModal';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllUsers = () => {
 
@@ -12,7 +13,7 @@ const AllUsers = () => {
         setDeleteUser(null);
     }
 
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('https://dream-furniture-server.vercel.app/users');
@@ -51,6 +52,10 @@ const AllUsers = () => {
                 toast.success('Deleted Successfully')
             }
         })
+    }
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
     return (

@@ -80,7 +80,7 @@ const AddProduct = () => {
                     <label className="label"><span className="label-text font-bold">Category Id</span></label>
                     <select {...register("categoryId", { required: 'Category is required' })} className="select select-bordered w-full">
                         {
-                            newProducts.map(newProduct => <option
+                            newProducts?.map(newProduct => <option
                                 key={newProduct._id}
                                 value={newProduct.id}
                             >{newProduct.id}</option>)

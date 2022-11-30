@@ -72,7 +72,6 @@ const MyProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            newProducts &&
                             newProducts?.map((product, i) =>
                                 <tr key={product._id}>
                                     <th>{i + 1}</th>

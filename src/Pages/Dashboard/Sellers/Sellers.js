@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { VscTrash } from "react-icons/vsc";
 import toast from 'react-hot-toast';
 import ActionModal from '../../Shared/ActionModal/ActionModal';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const Sellers = () => {
@@ -13,7 +14,7 @@ const Sellers = () => {
         setDeleteSeller(null);
     }
 
-    const { data: sellers = [], refetch } = useQuery({
+    const { data: sellers = [],isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('https://dream-furniture-server.vercel.app/sellers', {
@@ -58,6 +59,9 @@ const Sellers = () => {
             })
     }
 
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     return (
         <div>
@@ -76,10 +80,11 @@ const Sellers = () => {
                     </thead>
                     <tbody>
                         {
-                            sellers.map((seller, i) => <tr key={seller._id}>
+                            sellers &&
+                            sellers?.map((seller, i) => <tr key={seller._id}>
                                 <th>{i + 1}</th>
-                                <td>{seller.name}</td>
-                                <td>{seller.email}</td>
+                                <td>{seller?.name}</td>
+                                <td>{seller?.email}</td>
                                 <td>
                                     {sellers?.role !== 'admin' && <button onClick={() => handleMakeVerify(seller._id)} className='btn btn-sm btn-success'>Verify</button>}</td>
                                 <td> < label onClick={() => setDeleteSeller(seller)} htmlFor="action-modal" ><VscTrash className='text-3xl hover:cursor-pointer'></VscTrash></label >
@@ -93,7 +98,7 @@ const Sellers = () => {
             {
             deleteSeller && <ActionModal
                 title={`Are you sure you want to delete this seller?`}
-                message={`If you delete ${deleteSeller.name}. It cannot be undone.`}
+                message={`If you delete ${deleteSeller?.name}. It cannot be undone.`}
                 successDelete={handleDeleteSeller}
                 modalData={deleteSeller}
                 cancelModal={cancelModal}
