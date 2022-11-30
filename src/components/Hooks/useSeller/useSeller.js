@@ -6,7 +6,11 @@ const useSeller = email => {
 
     useEffect(()=>{
         if(email){
-            fetch(`https://dream-furniture-server.vercel.app/users/sellers/${email}`)
+            fetch(`https://dream-furniture-server.vercel.app/users/sellers/${email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             .then(res => res.json())
             .then(data => {
                 console.log(data);

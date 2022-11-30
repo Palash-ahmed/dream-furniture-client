@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { VscTrash } from "react-icons/vsc";
-import Loading from '../../Shared/Loading/Loading';
 import ActionModal from '../../Shared/ActionModal/ActionModal';
 import toast from 'react-hot-toast';
 
@@ -16,7 +15,7 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
     const url = `https://dream-furniture-server.vercel.app/products?email=${user?.email}`;
-    const { data: newProducts = [], isLoading, refetch } = useQuery({
+    const { data: newProducts = [],  refetch } = useQuery({
         queryKey: ['newProducts', user?.email],
         queryFn: async () => {
             try {
@@ -51,9 +50,6 @@ const MyProducts = () => {
         })
     }
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
 
     return (
         <div>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
@@ -9,18 +8,14 @@ import useToken from '../../components/Hooks/useToken/useToken';
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const [userEmail, setUserEmail] = useState('');
-    const [googleLogin, setGoogleLogin] = useState('');
-    const [token] = useToken(userEmail, googleLogin);
-    const location =useLocation();
+    const [token] = useToken(userEmail);
     const navigate = useNavigate();
 
-    const from = location.state?.from?.pathname || '/';
-
     if (token) {
-        navigate(from, {replace: true});
+        navigate('/');
     }
 
     const handleSignUp = (data) => {
@@ -28,7 +23,6 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                setUserEmail(user);
                 toast.success('User Created Successfully')
                 const userInfo = {
                     displayName: data.name
@@ -44,29 +38,22 @@ const SignUp = () => {
                 setSignUpError(error.message)
             });
     }
-
-    const handleGoogleSignIn = () =>{
-        googleSignIn()
-        .then(result => {
-            const user = result.user;
-            setGoogleLogin(user);
-        })
-        .catch(error => console.error(error));
-    }
     
+
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
         fetch('https://dream-furniture-server.vercel.app/users', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(user)
         })
             .then(res => res.json())
             .then(data => {
                 setUserEmail(email);
-                setGoogleLogin(email);
+                // setUserEmail(user.email);
             })
     }
 
@@ -115,8 +102,6 @@ const SignUp = () => {
                     {setSignUpError && <p className='text-error'>{signUpError}</p>}
                 </form>
                 <p className='my-4 text-center'>Already have an account? <Link className='text-secondary Link link-hover font-bold' to='/login'>Login</Link></p>
-                <div className="divider">OR</div>
-                <button onClick={handleGoogleSignIn} className='w-full btn btn-outline btn-primary text-bold'><FcGoogle className='text-2xl mr-2'></FcGoogle>Sign In with Google</button>
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../components/Hooks/useToken/useToken';
 
@@ -55,8 +54,6 @@ const Login = () => {
                     </div>
                 </form>
                 <p className='my-4 text-center'>Don't have an account? <Link className='text-secondary Link link-hover font-bold' to='/signup'>Sign Up</Link></p>
-                <div className="divider">OR</div>
-                <button className='w-full btn btn-outline btn-primary text-bold'><FcGoogle className='text-2xl mr-2'></FcGoogle>Sign In with Google</button>
             </div>
         </div>
     );

@@ -16,7 +16,11 @@ const AllUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://dream-furniture-server.vercel.app/users');
+            const res = await fetch('https://dream-furniture-server.vercel.app/users',{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }

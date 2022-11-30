@@ -15,7 +15,11 @@ const AddProduct = () => {
     const { data: newProducts, isLoading } = useQuery({
         queryKey: ['newProduct'],
         queryFn: async () => {
-            const res = await fetch('https://dream-furniture-server.vercel.app/categoriesNewProduct');
+            const res = await fetch('https://dream-furniture-server.vercel.app/categoriesNewProduct', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -27,6 +31,9 @@ const AddProduct = () => {
         const url = `https://api.imgbb.com/1/upload?key=${imageUploadKey}`
         fetch(url, {
             method: 'POST',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
             body: formData
         })
             .then(res => res.json())
@@ -93,9 +100,14 @@ const AddProduct = () => {
                         <input type="text" {...register("title", { required: 'Name is required' })} placeholder="Title" className="input input-bordered w-full " />
                         {errors.title && <p className='text-error'>{errors.title?.message}</p>}
                     </div>
+
+
+
+
+
                     <div className='my-4'>
                         <label className="label"><span className="label-text font-bold">Photo</span></label>
-                        <input type="file" {...register("image", { required: 'Image is required' })} className="file-input file-input-bordered w-full " />
+                        <input type="file"{...register("image", { required: 'Image is required' })} className="file-input file-input-bordered w-full " />
                         {errors.image && <p className='text-error'>{errors.image?.message}</p>}
                     </div>
                 </div>
@@ -120,7 +132,7 @@ const AddProduct = () => {
 
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div className="form-control w-full ">
-                        <label className="label"><span className="label-text font-bold">Used</span></label>
+                        <label className="label"><span className="label-text font-bold">Use ofYears</span></label>
                         <input type="number" {...register("used")} placeholder="Years of Use" className="input input-bordered w-full " />
                         {errors.used && <p className='text-error'>{errors.used?.message}</p>}
                     </div>
@@ -149,7 +161,7 @@ const AddProduct = () => {
                         <label className="label"><span className="label-text font-bold">Published Date</span></label>
                         <input type="text" {...register("date", {
                             required: "Published Date is required"
-                        })} placeholder="Publishing Date" className="input input-bordered w-full " />
+                        })} placeholder="01-01-2022" className="input input-bordered w-full " />
                         {errors.date && <p className='text-error'>{errors.date?.message}</p>}
                     </div>
                 </div>

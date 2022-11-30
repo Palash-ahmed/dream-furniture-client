@@ -82,7 +82,6 @@ const CheckOutForm = ({ order }) => {
                 email,
                 orderId: _id,
 
-
             }
             fetch('https://dream-furniture-server.vercel.app/payments', {
                 method: 'POST',

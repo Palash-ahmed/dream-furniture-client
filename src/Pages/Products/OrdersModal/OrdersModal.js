@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const OrdersModal = ({ selectedProduct, setSelectedProduct }) => {
-    const { title, resale_price, image_url } = selectedProduct;
+    const { title, resale_price, image_url, price } = selectedProduct;
     const { user } = useContext(AuthContext);
 
     const handleOrder = event => {
@@ -18,17 +18,20 @@ const OrdersModal = ({ selectedProduct, setSelectedProduct }) => {
 
         const order = {
             buyerName: name,
-            productName:title,
+            productName: title,
             email,
             price,
             phone,
             location,
             image_url,
+            
+            
         }
         fetch('https://dream-furniture-server.vercel.app/orders', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(order)
         })

@@ -4,6 +4,7 @@ const useToken = email => {
     const [token, setToken] = useState('');
     useEffect(() => {
         if (email) {
+            console.log(email);
             fetch(`https://dream-furniture-server.vercel.app/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {

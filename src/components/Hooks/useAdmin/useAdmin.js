@@ -6,10 +6,13 @@ const useAdmin = email => {
 
     useEffect(()=>{
         if(email){
-            fetch(`https://dream-furniture-server.vercel.app/users/admin/${email}`)
+            fetch(`https://dream-furniture-server.vercel.app/users/admin/${email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+            })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setIsAdmin(data.isAdmin);
                 setIsAdminLoading(false);
             })
