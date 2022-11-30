@@ -9,7 +9,7 @@ import Loading from '../../Shared/Loading/Loading';
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const imageUploadKey = process.env.REACT_APP_imagebb_key;
+    const imageUploadKey = "510d5828f56d049cf6d33da26b002e6c";
     const navigate = useNavigate();
 
     const { data: newProducts, isLoading } = useQuery({
@@ -31,9 +31,6 @@ const AddProduct = () => {
         const url = `https://api.imgbb.com/1/upload?key=${imageUploadKey}`
         fetch(url, {
             method: 'POST',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            },
             body: formData
         })
             .then(res => res.json())
@@ -60,7 +57,7 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            // authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(newProduct)
                     })
