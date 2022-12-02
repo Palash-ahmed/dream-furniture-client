@@ -1,5 +1,50 @@
 # Getting Started with Create React App
 
+<h1>Client Side Code Github Repository Link:</h1> https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Palash-ahmed.git
+
+<h1>Server Side Code Github Repository Link:</h1> https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Palash-ahmed.git
+
+<h1>Live Website Link:</h1> https://furnix-furniture.web.app/
+
+Admin Id : palash@palash.com
+Password: 123456
+
+<h1>Do this at first</h1>
+
+<ol>
+    <li>Create firebase app</li>
+    <li>Get firebase configuration inside firebase.config.js</li>
+    <li>Create a React App</li>
+    <li>Install firebase React router dom</li>
+    <li>Install TailwindCss and DaisyUI</li>
+    <li>Make sure to import TailwindCSS css in the index.js file</li>
+    <li>npm install firebase </li>
+    <li>Server Side npm install cors </li>
+    <li>npm install dotenv </li>
+    <li>npm install Mongodb </li>
+    <li>Use imgbb for Photo Link </li>
+    <li>Use Node Mongo db crud </li>
+    <li>Firebase Init </li>
+    <li>npm run build </li>
+    <li>firebase deploy </li>
+    <li>Add vercel Config </li>
+    <li>add npm run build package.json </li>
+</ol>
+
+
+
+<h1>Install</h1>
+
+<ol>
+    <li>lottie react install</li>
+    <li>Install @stripe/react-stripe-js</li>
+    <li>@tanstack/react-query install</li>
+    <li>Install react-hook-form</li>
+    <li>Install React-hot-toast </li>
+    <li>Install React-icons</li>
+</ol>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
