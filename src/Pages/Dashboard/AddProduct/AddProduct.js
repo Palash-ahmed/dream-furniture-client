@@ -13,7 +13,7 @@ const AddProduct = () => {
     const navigate = useNavigate();
 
     const { data: newProducts, isLoading } = useQuery({
-        queryKey: ['newProduct'],
+        queryKey: ['newProducts'],
         queryFn: async () => {
             const res = await fetch('https://dream-furniture-server.vercel.app/categoriesNewProduct', {
                 headers: {
@@ -57,6 +57,7 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(newProduct)
                     })
@@ -96,10 +97,6 @@ const AddProduct = () => {
                         <input type="text" {...register("title", { required: 'Name is required' })} placeholder="Title" className="input input-bordered w-full " />
                         {errors.title && <p className='text-error'>{errors.title?.message}</p>}
                     </div>
-
-
-
-
 
                     <div className='my-4'>
                         <label className="label"><span className="label-text font-bold">Photo</span></label>

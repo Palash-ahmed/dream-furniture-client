@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const OrdersModal = ({ selectedProduct, setSelectedProduct }) => {
-    const { title, resale_price, image_url, price } = selectedProduct;
+    const { title, resale_price, image_url } = selectedProduct;
     const { user } = useContext(AuthContext);
 
     const handleOrder = event => {
