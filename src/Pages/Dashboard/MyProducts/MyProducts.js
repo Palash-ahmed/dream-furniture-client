@@ -15,8 +15,8 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
     const url = `https://dream-furniture-server.vercel.app/products?email=${user?.email}`;
-    const { data: newProducts = [],  refetch } = useQuery({
-        queryKey: ['newProducts', user.email],
+    const { data: addNewProducts = [],  refetch } = useQuery({
+        queryKey: ['addNewProducts', user?.email],
         queryFn: async () => {
             try {
                 const res = await fetch(url, {
@@ -68,7 +68,7 @@ const MyProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            newProducts?.map((product, i) =>
+                            addNewProducts?.map((product, i) =>
                                 <tr key={product._id}>
                                     <th>{i + 1}</th>
                                     <td>
